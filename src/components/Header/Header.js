@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import styles from './Header.css';
 import withStyles from '../../decorators/withStyles';
-import Link from '../Link';
 import Navigation from '../Navigation';
 import AppBar from 'material-ui/lib/app-bar';
 
@@ -17,25 +16,24 @@ class Header extends Component {
 
     this.onLeftIconButtonTouchTap = this.onLeftIconButtonTouchTap.bind(this);
     this.state = {
-      title: "",
-    }
-  };
+      title: null,
+    };
+  }
 
   componentDidMount() {
-    this.setState({
-      title: document.title,
-    });
-  };
+    this.state.title = document.title;
+  }
 
   onLeftIconButtonTouchTap() {
     this.refs.leftNav.toggle();
-  };
+  }
 
   render() {
-    let menuItems = [
-      {type: "Link", value: "/contact", icon: <RemoveRedEye />, text: "Contact"},
-      {type: "Link", value: "/about", icon: <PersonAdd />, text: "About"},
+    const menuItems = [
+      {type: 'Link', value: '/contact', icon: <RemoveRedEye />, text: 'Contact'},
+      {type: 'Link', value: '/about', icon: <PersonAdd />, text: 'About'},
     ];
+
     return (
       <div className="Header">
         <AppBar
@@ -46,7 +44,7 @@ class Header extends Component {
         <Navigation ref="leftNav" menuItems={menuItems}/>
       </div>
     );
-  };
+  }
 }
 
 export default Header;

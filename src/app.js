@@ -7,11 +7,11 @@ import Router from './routes';
 import Location from './core/Location';
 import { addEventListener, removeEventListener } from './utils/DOMUtils';
 
-//Needed for onTouchTap
-//Can go away when react 1.0 release
-//Check this repo:
-//https://github.com/zilverline/react-tap-event-plugin
-let injectTapEventPlugin = require("react-tap-event-plugin");
+/*  Needed for onTouchTap
+    Can go away when react 1.0 release
+    Check this repo:
+    https://github.com/zilverline/react-tap-event-plugin */
+const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
 let cssContainer = document.getElementById('css');
