@@ -5,13 +5,13 @@ import styles from './App.css';
 import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
 import Header from '../Header';
+import Navigation from '../Navigation';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
 
 @withContext
 @withStyles(styles)
 class App extends Component {
-
   static propTypes = {
     children: PropTypes.element.isRequired,
     error: PropTypes.object,
