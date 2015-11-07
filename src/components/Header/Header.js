@@ -7,6 +7,9 @@ import Link from '../Link';
 import Navigation from '../Navigation';
 import AppBar from 'material-ui/lib/app-bar';
 
+import PersonAdd from 'material-ui/lib/svg-icons/social/person-add';
+import RemoveRedEye from 'material-ui/lib/svg-icons/image/remove-red-eye';
+
 @withStyles(styles)
 class Header extends Component {
   constructor() {
@@ -30,8 +33,8 @@ class Header extends Component {
 
   render() {
     let menuItems = [
-      {type: "Link", value: "/contact", icon: "removeRedEye", text: "Contact"},
-      {type: "Link", value: "/about", icon: "removeRedEye", text: "About"},
+      {type: "Link", value: "/contact", icon: <RemoveRedEye />, text: "Contact"},
+      {type: "Link", value: "/about", icon: <PersonAdd />, text: "About"},
     ];
     return (
       <div className="Header">

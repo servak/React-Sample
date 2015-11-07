@@ -4,16 +4,12 @@ import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
 import styles from './Navigation.css';
 import Location from '../../core/Location';
-
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
-import MenuDivider from 'material-ui/lib/menus/menu-divider';
-import PersonAdd from 'material-ui/lib/svg-icons/social/person-add';
-import RemoveRedEye from 'material-ui/lib/svg-icons/image/remove-red-eye';
-
-import CardHeader from 'material-ui/lib/card/card-header'
-import List from 'material-ui/lib/lists/list';
-import ListItem from 'material-ui/lib/lists/list-item';
+import mui, {
+  LeftNav,
+  CardHeader,
+  List,
+  ListItem,
+} from 'material-ui';
 
 class Navigation extends Component {
   static propTypes = {
@@ -36,7 +32,7 @@ class Navigation extends Component {
 
   renderListItems(items) {
     return items.map(item => {
-      return <ListItem primaryText={item.text} leftIcon={<RemoveRedEye />} onTouchTap={this.jumpLink.bind(this, item.value)}/>;
+      return <ListItem primaryText={item.text} leftIcon={item.icon} onTouchTap={this.jumpLink.bind(this, item.value)}/>;
     });
   };
 
