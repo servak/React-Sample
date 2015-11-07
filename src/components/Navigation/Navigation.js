@@ -2,6 +2,7 @@
 
 import React, { PropTypes, Component } from 'react';
 import Location from '../../core/Location';
+
 import {
   LeftNav,
   CardHeader,
@@ -23,14 +24,14 @@ class Navigation extends Component {
     this.refs.leftNav.toggle();
   }
 
-  jumpLink(href) {
-    Location.pushState('state', href, null);
+  jumpLink(item) {
+    Location.pushState('state', item.value, null);
     this.toggleDockedLeftNavClick();
   }
 
   renderListItems(items) {
-    return items.map(item => {
-      return <ListItem primaryText={item.text} leftIcon={item.icon} onTouchTap={this.jumpLink.bind(this, item.value)}/>;
+    return items.map((item, index) => {
+      return <ListItem key={index} primaryText={item.text} leftIcon={item.icon} onTouchTap={this.jumpLink.bind(this, item)}/>;
     });
   }
 

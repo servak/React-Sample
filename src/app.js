@@ -17,7 +17,6 @@ injectTapEventPlugin();
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
 const context = {
-  onSetTitle: value => document.title = value,
   onSetMeta: (name, content) => {
     // Remove and create a new <meta /> tag in order to make it work
     // with bookmarks in Safari
