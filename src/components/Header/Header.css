@@ -11,6 +11,10 @@
   color: #fff;
 }
 
+.Navigation {
+  width: 200px;
+}
+
 .Header-container {
   margin: 0 auto;
   padding: 20px 0;

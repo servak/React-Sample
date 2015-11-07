@@ -1,32 +1,28 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import Location from '../../core/Location';
+import styles from './Navigation.css';
+import withStyles from '../../decorators/withStyles';
 
 import {
-  LeftNav,
-  CardHeader,
   List,
   ListItem,
 } from 'material-ui';
 
+import {
+  SocialPersonAdd,
+  ImageRemoveRedEye,
+} from 'material-ui/lib/svg-icons';
+
+@withStyles(styles)
 class Navigation extends Component {
-  static propTypes = {
-    menuItems: PropTypes.array.isRequired,
-  }
-
-  constructor() {
-    super();
-    this.toggle = this.toggleDockedLeftNavClick.bind(this);
-  }
-
-  toggleDockedLeftNavClick() {
-    this.refs.leftNav.toggle();
+  constructor(props) {
+    super(props);
   }
 
   jumpLink(item) {
     Location.pushState('state', item.value, null);
-    this.toggleDockedLeftNavClick();
   }
 
   renderListItems(items) {
@@ -36,16 +32,19 @@ class Navigation extends Component {
   }
 
   render() {
+    const menuItems = [
+      {type: 'Link', value: '/contact', icon: <ImageRemoveRedEye />, text: 'Contact'},
+      {type: 'Link', value: '/about', icon: <SocialPersonAdd />, text: 'About'},
+    ];
+
     return (
-      <LeftNav ref="leftNav" docked={false}>
-        <CardHeader title="Title" subtitle="Subtitle"/>
+      <div>
         <List>
-          {this.renderListItems(this.props.menuItems)}
+          {this.renderListItems(menuItems)}
         </List>
-      </LeftNav>
+      </div>
     );
   }
-
 }
 
 export default Navigation;

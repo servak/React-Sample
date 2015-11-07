@@ -46,7 +46,7 @@ class Header extends Component {
           onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
           />
 
-        <Navigation ref="leftNav" menuItems={menuItems}/>
+        <Navigation ref="leftNav" menuItems={menuItems} className="Navigation"/>
       </div>
     );
   }
