@@ -29,6 +29,10 @@ class Header extends Component {
   };
 
   render() {
+    let menuItems = [
+      {type: "Link", value: "/contact", icon: "removeRedEye", text: "Contact"},
+      {type: "Link", value: "/about", icon: "removeRedEye", text: "About"},
+    ];
     return (
       <div className="Header">
         <AppBar
@@ -36,7 +40,7 @@ class Header extends Component {
           onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
           />
 
-        <Navigation ref="leftNav"/>
+        <Navigation ref="leftNav" menuItems={menuItems}/>
       </div>
     );
   };
