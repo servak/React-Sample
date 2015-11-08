@@ -28,9 +28,28 @@ class Html extends Component {
     });
   }
 
+  getStyles() {
+    return {
+      html: {
+        color: '#222',
+        fontWeight: 100,
+        fontSize: '1em',
+        fontFamily: "'Segoe UI', 'HelveticaNeue-Light', sans-serif",
+        lineHeight: 1.375,
+        height: '100%',
+
+      },
+      body: {
+        height: '100%',
+      }
+    };
+  }
+
   render() {
+    const styles = this.getStyles();
+
     return (
-      <html className="no-js" lang="">
+      <html className="no-js" lang="" style={styles.html}>
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -40,7 +59,7 @@ class Html extends Component {
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <style id="css" dangerouslySetInnerHTML={{__html: this.props.css}} />
       </head>
-      <body>
+      <body style={styles.body}>
         <div id="app" dangerouslySetInnerHTML={{__html: this.props.body}} />
         <script src="/app.js"></script>
         <script dangerouslySetInnerHTML={this.trackingCode()} />
