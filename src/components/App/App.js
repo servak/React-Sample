@@ -8,8 +8,6 @@ import Header from '../Header';
 import Navigation from '../Navigation';
 import TitleStore from '../../stores/TitleStore';
 
-const NavWidth = 20;
-
 @withContext
 @withStyles(styles)
 class App extends Component {
@@ -23,7 +21,7 @@ class App extends Component {
     this.onLeftIconButtonTouchTap = this.onLeftIconButtonTouchTap.bind(this);
     this.state = {
       title: TitleStore.get(),
-      width: NavWidth,
+      navigation: true,
     };
   }
 
@@ -32,46 +30,65 @@ class App extends Component {
   }
 
   onLeftIconButtonTouchTap() {
-    if (this.state.width === NavWidth) {
-      this.setState({width: 0});
-    } else {
-      this.setState({width: NavWidth});
-    }
-  }
-
-  getNavStyle() {
-    const NavWidthPaddingLeft = 1;
-    if (this.state.width === NavWidth) {
-      return {
-        width: (this.state.width - NavWidthPaddingLeft + '%'),
-        paddingLeft: (NavWidthPaddingLeft + '%'),
-      };
-    }
-
-    return {display: 'none'};
+    this.setState({
+      navigation: !this.state.navigation,
+    });
   }
 
   _onChange() {
     this.setState({title: TitleStore.get()});
   }
 
-  render() {
-    const navCss = this.getNavStyle();
-    const contentCss = {
-      width: (100 - this.state.width + '%'),
+  getStyles() {
+    const navWidth = 20;
+    const navPadding = 1;
+
+    let styles = {
+      app: {
+        height: '100%',
+      },
+      navigation: {
+        display: 'inline-block',
+        height: '90%',
+        verticalAlign: 'top',
+        overflowX: 'auto',
+        overflowY: 'auto',
+        marginTop: '10px',
+        width: (navWidth - navPadding) + '%',
+        paddingLeft: navPadding + '%',
+      },
+      contents: {
+        height: '90%',
+        width: (100 - navWidth) + '%',
+        display: 'inline-block',
+        position: 'relative',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+      },
     };
 
+    if (!this.state.navigation) {
+      styles.navigation.display = 'none';
+      styles.contents.width = '100%';
+    }
+
+    return styles;
+  }
+
+  render() {
+    const styles = this.getStyles();
+
     return !this.props.error ? (
-      <div style={{height: '100%'}}>
+      <div style={styles.app}>
         <Header
           title={this.state.title}
           onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
           zDepth={2}
           />
-        <div style={navCss} className="Navigation">
+        <div style={styles.navigation}>
           <Navigation />
         </div>
-        <div className="ContentsWrapper" style={contentCss}>
+        <div className="ContentsWrapper" style={styles.contents}>
           {this.props.children}
         </div>
       </div>

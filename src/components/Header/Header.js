@@ -1,8 +1,6 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes, Component } from 'react';
-import styles from './Header.css';
-import withStyles from '../../decorators/withStyles';
 
 import {
   Toolbar,
@@ -22,7 +20,6 @@ import {
 
 let timer = null;
 
-@withStyles(styles)
 class Header extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
