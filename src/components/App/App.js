@@ -4,12 +4,9 @@ import React, { PropTypes, Component } from 'react';
 import styles from './App.css';
 import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
+import Header from '../Header';
 import Navigation from '../Navigation';
 import TitleStore from '../../stores/TitleStore';
-
-import {
-  AppBar,
-} from 'material-ui';
 
 const NavWidth = 20;
 
@@ -66,7 +63,7 @@ class App extends Component {
 
     return !this.props.error ? (
       <div style={{height: '100%'}}>
-        <AppBar
+        <Header
           title={this.state.title}
           onLeftIconButtonTouchTap={this.onLeftIconButtonTouchTap}
           zDepth={2}
