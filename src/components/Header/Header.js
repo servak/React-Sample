@@ -4,6 +4,7 @@ import React, { PropTypes, Component } from 'react';
 import {changeSearch} from '../../actions/SearchAction';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import MyRawTheme from '../../theme';
+import Colors from 'material-ui/lib/styles/colors';
 
 import {
   Toolbar,
@@ -44,7 +45,7 @@ class Header extends Component {
   getChildContext() {
     const mui = ThemeManager.getMuiTheme(MyRawTheme);
     mui.toolbar.backgroundColor = MyRawTheme.palette.primary1Color;
-
+    mui.textField.textColor = "white";
     return {
       muiTheme: mui,
     };
@@ -116,6 +117,9 @@ class Header extends Component {
           <TextField
             style={styles.textField}
             hintText="search word"
+            hintStyle={{color: Colors.blue50}}
+            underlineStyle={{borderColor: Colors.blue500}}
+            underlineFocusStyle={{borderColor: Colors.blue50}}
             onChange={this.inputChange}
             />
         </ToolbarGroup>
