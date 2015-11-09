@@ -1,9 +1,9 @@
 import Dispatcher from '../core/Dispatcher';
 import ActionTypes from '../constants/ActionTypes';
 
-exports.changeTitle = (val) => {
+exports.changeSearch = (val) => {
   Dispatcher.dispatch({
-    actionType: ActionTypes.CHANGE_TITLE,
+    actionType: ActionTypes.CHANGE_SEARCH,
     value: val,
   });
 };

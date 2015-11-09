@@ -1,7 +1,7 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes, Component } from 'react';
-
+import {changeSearch} from '../../actions/SearchAction';
 import {
   Toolbar,
   ToolbarGroup,
@@ -19,6 +19,7 @@ import {
 } from 'material-ui/lib/svg-icons';
 
 let timer = null;
+const KeyTimer = 200;
 
 class Header extends Component {
   static propTypes = {
@@ -34,11 +35,11 @@ class Header extends Component {
   }
 
   getStyles() {
-    let themeVariables = {
+    const themeVariables = {
       height: 55,
       textColor: 'white',
     };
-    let iconButtonSize = 48;
+    const iconButtonSize = 48;
 
     return {
       title: {
@@ -67,21 +68,21 @@ class Header extends Component {
     };
   }
 
-  _inputChange(e) {
+  _inputChange(event) {
     if (timer) {
       clearTimeout(timer);
     }
 
     timer = setTimeout(() => {
-      console.log(e.target.value);
-    }, 500);
+      changeSearch(event.target.value);
+    }, KeyTimer);
   }
 
   render() {
     const styles = this.getStyles();
     const iconMenuItems = [
       { payload: '1', text: 'Download' },
-      { payload: '2', text: 'More Info' }
+      { payload: '2', text: 'More Info' },
     ];
 
     return (
