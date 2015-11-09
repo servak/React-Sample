@@ -2,6 +2,9 @@
 
 import React, { PropTypes, Component } from 'react';
 import {changeSearch} from '../../actions/SearchAction';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import MyRawTheme from '../../theme';
+
 import {
   Toolbar,
   ToolbarGroup,
@@ -28,21 +31,32 @@ class Header extends Component {
     onLeftIconButtonTouchTap: PropTypes.func.isRequired,
   }
 
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
 
     this.inputChange = this._inputChange.bind(this);
   }
 
-  getStyles() {
-    const themeVariables = {
-      height: 55,
-      textColor: 'white',
+  getChildContext() {
+    const mui = ThemeManager.getMuiTheme(MyRawTheme);
+    mui.toolbar.backgroundColor = MyRawTheme.palette.primary1Color;
+
+    return {
+      muiTheme: mui,
     };
+  }
+
+  getStyles() {
+    const lineHeight = 55;
     const iconButtonSize = 48;
 
     return {
       title: {
+        color: 'white',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -50,15 +64,15 @@ class Header extends Component {
         paddingTop: 0,
         letterSpacing: 0,
         fontSize: 24,
-        lineHeight: themeVariables.height + 'px',
+        lineHeight: lineHeight + 'px',
       },
       iconButton: {
-        marginTop: (themeVariables.height - iconButtonSize) / 2,
+        marginTop: (lineHeight - iconButtonSize) / 2,
         marginRight: 8,
         marginLeft: -16,
       },
       iconSvg: {
-        marginTop: (themeVariables.height - iconButtonSize) / 2,
+        marginTop: (lineHeight - iconButtonSize) / 2,
         marginLeft: '16px',
         marginRight: '10px',
       },
@@ -92,13 +106,13 @@ class Header extends Component {
 
         <ToolbarGroup key={0}>
           <IconButton style={styles.iconButton} onTouchTap={this.props.onLeftIconButtonTouchTap}>
-            <ImageDehaze />
+            <ImageDehaze color="white"/>
           </IconButton>
         </ToolbarGroup>
 
         <ToolbarGroup key={1}>
           <ToolbarTitle text={this.props.title} style={styles.title}/>
-          <ActionSearch style={styles.iconSvg}/>
+          <ActionSearch color="white" style={styles.iconSvg}/>
           <TextField
             style={styles.textField}
             hintText="search word"

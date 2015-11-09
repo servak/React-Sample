@@ -1,6 +1,8 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { Component, PropTypes } from 'react';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import MyRawTheme from '../../theme';
 
 class Html extends Component {
 
@@ -11,10 +13,20 @@ class Html extends Component {
     body: PropTypes.string.isRequired,
   };
 
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object,
+  };
+
   static defaultProps = {
-    title: '',
+    title: 'Title',
     description: '',
   };
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(MyRawTheme),
+    };
+  }
 
   getStyles() {
     return {
