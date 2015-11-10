@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './ContactPage.css';
 import withStyles from '../../decorators/withStyles';
 import {changeTitle} from '../../actions/TitleAction';
+import {getUsers} from '../../actions/UsersAction';
 import UserStore from '../../stores/UserStore';
 
 import {
@@ -27,7 +28,12 @@ class ContactPage extends Component {
   }
 
   componentDidMount() {
+    getUsers();
     changeTitle(title);
+  }
+
+  componentWillUnmount() {
+    UserStore.removeChangeListener(this._onChange.bind(this));
   }
 
   getListItem(user, index) {

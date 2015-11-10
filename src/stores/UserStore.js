@@ -8,26 +8,8 @@ class UserStoreClass extends EventEmitter {
   constructor() {
     super();
     this.users = {
-      strawHatPirates: [
-        'Monkey D. Luffy',
-        'Roronoa Zoro',
-        'Nami',
-        'Usopp',
-        'Sanji',
-        'Tony Tony Chopper',
-        'Nico Robin',
-        'Franky',
-        'Brook',
-      ],
-      sevenWarlordsOfTheSea: [
-        'Dracule Mihawk',
-        'Crocodile',
-        'Gecko Moriah',
-        'Jimbei',
-        'Boa Hancock',
-        'Donquixote Doflamingo',
-        'Bartholomew Kuma',
-      ],
+      strawHatPirates: [],
+      sevenWarlordsOfTheSea: [],
     };
     this.word = '';
   }
@@ -72,7 +54,10 @@ Dispatcher.register((payload) => {
     UserStore.word = payload.value;
     UserStore.emit(CHANGE_EVENT);
     break;
-
+  case ActionTypes.CHANGE_USER:
+    UserStore.users = payload.value;
+    UserStore.emit(CHANGE_EVENT);
+    break;
   default:
     return true;
 

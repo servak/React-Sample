@@ -45,7 +45,7 @@ class Header extends Component {
   getChildContext() {
     const mui = ThemeManager.getMuiTheme(MyRawTheme);
     mui.toolbar.backgroundColor = MyRawTheme.palette.primary1Color;
-    mui.textField.textColor = "white";
+    mui.textField.textColor = 'white';
     return {
       muiTheme: mui,
     };
